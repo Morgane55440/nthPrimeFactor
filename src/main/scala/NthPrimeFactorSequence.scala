@@ -3,11 +3,12 @@ package main.scala
 import main.scala.LazyUtils.LazyListUtils
 import main.scala.NumberClasses.Fraction
 import main.scala.LazyUtils.LazyListUtils.DoubleLazyList
+import main.scala.NumberClasses.FractionalFractions.RationalIsFractional
+
 
 object NthPrimeFactorSequence {
 
   def main(argv: Array[String]): Unit = {
-
 
     lazy val primes : LazyList[BigInt] = 2 #:: LazyList.from(0).map(n => {
       var k = primes.apply(n) + 1
@@ -65,7 +66,7 @@ object NthPrimeFactorSequence {
       var snd = mergedSequences.apply(i + 1)
       require(fst.size < snd.size, "this : " + fst.sequence + " depth=" + fst.depth + " should be smaller than this : " + snd.sequence+ " depth=" + snd.depth)
     }
-
+    
   }
 
 }

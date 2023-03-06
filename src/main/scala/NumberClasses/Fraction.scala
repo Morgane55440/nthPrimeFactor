@@ -17,7 +17,7 @@ class Fraction [T](x : T, y : T)(implicit integral : Integral[T]){
   def this(x: T)(implicit integral : Integral[T]) = this(x, integral.one)
 
 
-  def zero : Fraction[T] = new Fraction[T](integral.zero)
+  def zero() : Fraction[T] = new Fraction[T](integral.zero)
 
   def one() : Fraction[T] = new Fraction[T](integral.one)
 
@@ -70,31 +70,6 @@ class Fraction [T](x : T, y : T)(implicit integral : Integral[T]){
   def fromInt(n: Int) : Fraction[T] = new Fraction[T](integral.fromInt(n))
 
   override
-  def toString: String = numer + "/" + denom
+  def toString: String = numer.toString + "/" + denom.toString
 }
 
-trait FractionIsFractional[T] extends Fractional[Fraction[T]] {
-  def plus(x: Fraction[T], y: Fraction[T]): Fraction[T] = x + y
-  def minus(x: Fraction[T], y: Fraction[T]): Fraction[T] = x - y
-  def times(x: Fraction[T], y: Fraction[T]): Fraction[T] = x * y
-  def negate(x: Fraction[T]): Fraction[T] = -x
-  def fromInt(x: Int)(implicit integral : Integral[T]): Fraction[T] = new Fraction[T]().fromInt(x)
-  def parseString(str: String)(implicit integral : Integral[T]): Option[Fraction[T]] = {
-    val halves = str.split("/")
-    if (halves.length != 2) Option.empty else {
-      val numer = integral.parseString(halves.head)
-      val denom = integral.parseString(halves.tail.head)
-      if (numer.isEmpty || denom.isEmpty) Option.empty
-      else Option.apply(new Fraction[T](numer.get,denom.get))
-    }
-  }
-  def toInt(x: Fraction[T]): Int = x.toInt
-  def toLong(x: Fraction[T]): Long = x.toLong
-  def toFloat(x: Fraction[T]): Float = x.toFloat
-  def toDouble(x: Fraction[T]): Double = x.toDouble
-  def div(x: Fraction[T], y: Fraction[T]): Fraction[T] = x / y
-  // logic in Numeric base trait mishandles abs(-0.0)
-  override def abs(x: Fraction[T]): Fraction[T] = x.abs
-  // logic in Numeric base trait mishandles sign(-0.0) and sign(Double.NaN)
-  override def sign(x: Fraction[T]): Fraction[T] = if (x > x.zero) x.one else if (x < x.zero) -x.one else x.zero
-}
