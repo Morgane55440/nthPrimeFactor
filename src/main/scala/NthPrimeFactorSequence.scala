@@ -3,7 +3,7 @@ package main.scala
 import main.scala.LazyUtils.LazyListUtils
 import main.scala.NumberClasses.Fraction
 import main.scala.LazyUtils.LazyListUtils.DoubleLazyList
-import main.scala.NumberClasses.FractionalFractions.RationalIsFractional
+import main.scala.NumberClasses.FractionsAreFractional.RationalIsFractional
 
 
 object NthPrimeFactorSequence {
@@ -66,7 +66,7 @@ object NthPrimeFactorSequence {
       var snd = mergedSequences.apply(i + 1)
       require(fst.size < snd.size, "this : " + fst.sequence + " depth=" + fst.depth + " should be smaller than this : " + snd.sequence+ " depth=" + snd.depth)
     }
-    
+
   }
 
 }

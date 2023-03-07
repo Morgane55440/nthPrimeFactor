@@ -2,7 +2,7 @@ package main.scala.NumberClasses
 
 import collection.immutable.Range.BigDecimal.bigDecAsIntegral
 
-object FractionalFractions {
+object FractionsAreFractional {
 
   trait FractionIsFractional[T](implicit integral : Integral[T]) extends Fractional[Fraction[T]] {
     def plus(x: Fraction[T], y: Fraction[T]): Fraction[T] = x + y
@@ -42,7 +42,7 @@ object FractionalFractions {
 
   implicit object CharRationalIsFractional extends FractionIsFractional[Char]
 
-  implicit object ShortRationalIsFractional extends FractionIsFractional[Short]
+  implicit object ShortRationalIsFracqtional extends FractionIsFractional[Short]
 
   implicit object BigDecRationalIsFractional extends FractionIsFractional[BigDecimal]
 
